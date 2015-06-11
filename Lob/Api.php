@@ -1,28 +1,31 @@
 <?php
 
-use Guzzle\Http\Client;
-use Guzzle\Http\EntityBody;
-use Guzzle\Http\Message\Request;
-use Guzzle\Http\Message\Response;
+namespace Lob;
 
-class Lob {
+use GuzzleHttp\Client;
+
+class Api {
 
     private $base_url = 'https://api.lob.com/v1/';
 
     public function request($action, $endpoint, $params = []) {
-        $client = new Client($this->base_url);
-        if (!method_exists($client, $action)) {
-            throw new Exception("Action must be a valid Guzzle action, such as `get`, `post`, `delete`, etc.");
-        }
-        $request = $client->{$action}($endpoint, [], $params);
-        $request->setAuth(Config::get('lob.api_key'), null);
+        $client = new Client(['base_uri' => $this->base_url]);
 
-        try {
-            $results = $request->send()->getBody(true);
-        } catch (Exception $e) {
-            return ['error' => $e->getMessage()];
+        $results = $client->{$action}($endpoint, [
+            'auth' => [Config::get('lob.api_key'), null],
+            'form_params' => $params,
+            'http_errors' => false,
+        ]);
+
+        if ($results->getStatusCode() == 200) {
+            return json_decode($results->getBody(true), 1);
+        } else {
+            return [
+                'status' => $results->getStatusCode(),
+                'reason' => $results->getReasonPhrase()
+            ];
         }
-        
-        return json_decode($results, 1) ?: $results;
+
+        throw new \Exception("Oops, something went wrong!");
     }
 }

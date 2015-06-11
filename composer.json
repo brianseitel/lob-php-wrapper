@@ -2,12 +2,18 @@
     "name": "brianseitel/lob",
     "description": "Lob API",
     "require": {
-        "guzzle/guzzle": "~3.9"
+        "guzzlehttp/guzzle": "^6.0"
     },
     "authors": [
         {
             "name": "Brian Seitel",
             "email": "brian@rentjuice.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {"Lob\\": "Lob/"},
+        "files": [
+            "functions.php"
+        ]
+    }
 }

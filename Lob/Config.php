@@ -1,5 +1,7 @@
 <?php
 
+namespace Lob;
+
 class Config {
 
     public static function get($key, $default = "") {
