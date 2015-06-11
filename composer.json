@@ -1,0 +1,13 @@
+{
+    "name": "brianseitel/lob",
+    "description": "Lob API",
+    "require": {
+        "guzzle/guzzle": "~3.9"
+    },
+    "authors": [
+        {
+            "name": "Brian Seitel",
+            "email": "brian@rentjuice.com"
+        }
+    ]
+}
