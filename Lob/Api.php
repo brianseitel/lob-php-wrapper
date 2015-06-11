@@ -13,6 +13,14 @@ class Api {
         $this->api_key = $api_key;
     }
 
+    /**
+     * Sends a request to Lob's API. If successful, returns the response as an array.
+     * If it fails, it returns the status code and the reason for failure.
+     *
+     * @param $action String The method through which to send the request: GET, PUT, PATCH, DELETE, POST
+     * @param $endpoint String Which endpoint we want to hit on Lob's API
+     * @param $params Array The data we want to send to Lob as a key-value array
+     */
     public function request($action, $endpoint, $params = []) {
         $client = new Client(['base_uri' => $this->base_url]);
 
