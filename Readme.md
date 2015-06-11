@@ -14,23 +14,6 @@ Next, require this package.
 composer require 'brianseitel/lob:dev-master'
 ```
 
-Now, you can use the API library like so:
-
-```
-<?php
-require 'vendor/autoload.php';
-
-$lob = new Lob\Api;
-
-$results = $lob->request('post', 'addresses', $address);
-```
-
-The full signature is: ```$lob->request($action, $endpoint, $data)```
-
-    * `$action` must be one of the standard HTTP verbs: GET, POST, PUT, DELETE, PATCH
-    * `$endpoint` must be on of the endpoints detailed in Lob's [Developer Documentation](https://lob.com/docs#intro).
-    * `$data` must be an array of parameters. This library does not check the validity of the parameters.
-
 
 
 ## Usage
@@ -46,6 +29,21 @@ return [
     ]
 ];
 ```
+Now, you can use the API library like so:
+
+```
+$api_key = Lob\Config::get('lob.api_key');
+$lob = new Lob\Api($api_key);
+
+$results = $lob->request('post', 'addresses', $address);
+```
+
+The full signature is: ```$lob->request($action, $endpoint, $data)```
+
+    * `$action` must be one of the standard HTTP verbs: GET, POST, PUT, DELETE, PATCH
+    * `$endpoint` must be on of the endpoints detailed in Lob's [Developer Documentation](https://lob.com/docs#intro).
+    * `$data` must be an array of parameters. This library does not check the validity of the parameters.
+
 
 
 ## Contributing

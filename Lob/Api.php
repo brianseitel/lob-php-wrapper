@@ -7,12 +7,17 @@ use GuzzleHttp\Client;
 class Api {
 
     private $base_url = 'https://api.lob.com/v1/';
+    private $api_key;
+
+    public function __construct($api_key) {
+        $this->api_key = $api_key;
+    }
 
     public function request($action, $endpoint, $params = []) {
         $client = new Client(['base_uri' => $this->base_url]);
 
         $results = $client->{$action}($endpoint, [
-            'auth' => [Config::get('lob.api_key'), null],
+            'auth' => [$this->api_key, null],
             'form_params' => $params,
             'http_errors' => false,
         ]);

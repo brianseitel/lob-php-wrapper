@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../../bootstrap.php';
+require __DIR__.'/../../vendor/autoload.php';
 
 class ConfigTest extends PHPUnit_Framework_TestCase {
 
@@ -26,8 +26,8 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ]
         ];
 
-        $this->assertEquals('foobar', Config::getKey($settings, 'lob.api_key'));
-        $this->assertEquals(5, Config::getKey($settings, 'keys.lock1'));
-        $this->assertEquals('brian', Config::getKey($settings, 'names.boys.0'));
+        $this->assertEquals('foobar', Lob\Config::getKey($settings, 'lob.api_key'));
+        $this->assertEquals(5, Lob\Config::getKey($settings, 'keys.lock1'));
+        $this->assertEquals('brian', Lob\Config::getKey($settings, 'names.boys.0'));
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../../bootstrap.php';
+require __DIR__.'/../../vendor/autoload.php';
 
 class ApiTest extends PHPUnit_Framework_TestCase {
 
@@ -8,7 +8,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
     private $address_ids = [];
 
     public function setup() {
-        $this->lob = new Lob;
+        $this->lob = new Lob\Api(Lob\Config::get('lob.api_key'));
         $this->address = [
             'name'            => 'Brian Seitel',
             'address_line1'   => '225 Bush St',
