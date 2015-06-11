@@ -35,12 +35,12 @@ Now, you can use the API library like so:
 $api_key = Lob\Config::get('lob.api_key');
 $lob = new Lob\Api($api_key);
 
-$results = $lob->request('post', 'addresses', $address);
+$results = $lob->request('get', 'addresses', []); // List all addresses
 ```
 
 The full signature is: ```$lob->request($action, $endpoint, $data)```
 
-    * `$action` must be one of the standard HTTP verbs: GET, POST, PUT, DELETE, PATCH
+    * `$action` must be one of the standard HTTP verbs (case insensitive): GET, POST, PUT, DELETE, PATCH
     * `$endpoint` must be on of the endpoints detailed in Lob's [Developer Documentation](https://lob.com/docs#intro).
     * `$data` must be an array of parameters. This library does not check the validity of the parameters.
 
